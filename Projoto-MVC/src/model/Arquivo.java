@@ -12,8 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.Buffer;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,6 +69,7 @@ public static void puxarDados() {
             }
        scan.close();
     }
+
      public  static void escrever(JSONObject json) throws IOException{
  
             try {

@@ -7,31 +7,39 @@ package controller;
 import java.text.ParseException;
 import model.Colecao;
 import model.Registro;
+import view.CRUD;
 /**
  *
  * @author tales
  */
 public class Routes {
-    public static boolean Savar(String nome, String descricao){
+    Registro reg = new Registro();
+    public boolean Savar(String nome, String descricao){
         
-        Registro reg = new Registro();
-        Colecao col = new Colecao(nome, descricao);
+   
+       Colecao col = new Colecao(nome, descricao);
        return reg.incluirColecao(col);
 
     }
     
-    public static String Listar() throws ParseException{
-        Registro reg = new Registro();
+    public String Listar() throws ParseException{
+        
         return reg.EnviarListaColecao();
     }
     
-    public static boolean excluir(String id){
-        Registro reg = new Registro();
+    public boolean excluir(String id){
+    
         return reg.excluir(id);
     }
     
-    public static boolean alterar(String id, String nome, String preco){
-        Registro reg = new Registro();
-        return reg.alterar(id, nome, preco);
+    public boolean alterar(String id, String nome, String descricao){
+   
+        return reg.alterar(id, nome, descricao);
+    }
+    
+    public static void main(String[] args){
+            java.awt.EventQueue.invokeLater(() -> {
+                new CRUD().setVisible(true);
+            });
     }
 }

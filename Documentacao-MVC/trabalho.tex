@@ -105,95 +105,8 @@
       
       \begin{umlpackage}{Lista de Colecao} 
 
+
         \umlclass[x=-10, y=0]{Registro}{ 
-        - colecao : Colecao[] \\
-      }{
-        + incluirColecao(Colecao: colecao): bool\\
-        + EnviarListaColecao(): String\\
-        + Excluir(String: id): bool\\
-        + Alterar(id: String, nome: String, descricao: String):bool\\
-      }
-      
-    \umlclass[x=0, y=-5]{Colecao}{
-      - nome : String \\
-      - descricao : String \\
-      - id : String \\}{
-      + Colecao(nome: String, descricoa: String)\\
-      + getNome(): String\\
-      + setNome(nome: String): void\\
-      + getDescricao(): String\\
-      + setDecriscao(descricao: String): void\\
-      + getId(): String\\
-      + setId(id: String): void\\
-      + toString(): String\\}
-    
-    \umlclass[x=-10,y=-5]{Routes}{
-      }{
-        Salvar(): bool\\
-        Listar(): String\\
-        Alterar(id: String, nome: String, descricao: String): boll\\
-        Excluir(id: String): boll\\
-        }
-
-    \umlclass[x=-10, y=-10]{Index}{}{}
-          
-        \end{umlpackage}
-\end{tikzpicture}\\[0.5cm]
-
-
-
-\section{Diagrama de Sequência}
-
-\subsection{Diagrama de Sequência Cadrastar Colaborador}
-    \begin{tikzpicture} 
-      \begin{umlseqdiag} 
-        \umlactor[]{ADM}
-        \umlobject[stereo=entity]{Login}
-        \umlobject[stereo=entity]{Validar}
-        \umlobject[stereo=entity]{TelaSistema}
-        \umlobject[stereo=entity]{ValidarCodigo}
-        \begin{umlcall}[op={1},return=4]{ADM}{Login}
-        \end{umlcall}
-        \begin{umlcall}[op={2}, return=3]{Login}{Validar}
-        \end{umlcall}
-        \begin{umlcall}[op={5}, dt=10]{ADM}{TelaSistema}
-        \end{umlcall}
-        \begin{umlcall}[op={6}, return=8]{TelaSistema}{ValidarCodigo}
-        \end{umlcall}
-        \begin{umlcall}[op={9}]{TelaSistema}{ADM}
-        \end{umlcall}
-        \begin{umlcallself}[op={7}]{ValidarCodigo} 
-        \end{umlcallself} 
-      \end{umlseqdiag} 
-    \end{tikzpicture}\\
-    
-    {\bf Descrição:}\\
-    1. Logar()\\
-    2. Validar Login\\
-    3. Resposta validação\\
-    4. Login Efetuado\\
-    5. Formulário\\
-    6. CadrastarColaborador()\\
-    7. Validar Dados Inseridos\\
-    8. Mostrar mensagem de sucesso ou mostrar erro\\
-    9. Retonar Início\\
-    
-    
-    No que se refere ao diagrama de seqüência, preocupa-se com a ordem temporal
-    em que as mensagens são trocadas entre os objetos envolvidos em determinado
-    processo, ou seja, quais condições devem ser satisfeitas e quais métodos devem
-    ser disparados entre os objetos envolvidos e em que ordem durante um processo.
-    Dessa forma, determinar a ordem em que os eventos ocorrem, as mensagens que são
-    enviadas, os métodos que são chamados e como os objetos interagem entre si dentro
-    de um determinado processo é o principal objetivo deste diagrama.
-    
-    \section{Diagrama de Classes}
-    \begin{tikzpicture} 
-      %\begin{umlpackage}{p}
-        
-        \begin{umlpackage}{Lista de Colecao} 
-  
-          \umlclass[x=-10, y=0]{Registro}{ 
           - colecao : Colecao[] \\
         }{
           + incluirColecao(Colecao: colecao): bool\\
@@ -201,8 +114,9 @@
           + Excluir(String: id): bool\\
           + Alterar(id: String, nome: String, descricao: String):bool\\
         }
+
         
-      \umlclass[x=0, y=-5]{Colecao}{
+      \umlclass[x=0, y=-10]{Colecao}{
         - nome : String \\
         - descricao : String \\
         - id : String \\}{
@@ -214,6 +128,20 @@
         + getId(): String\\
         + setId(id: String): void\\
         + toString(): String\\}
+
+        \umlclass[x=0, y=0]{Arquivo}{
+        - escrita: FileWriter\\
+        - parser: JSONParser\\
+        - scan: Scanner\\
+        - gson: Gson\\
+      }{
+        + readFile(): String\\
+        + puxarDados(): void\\
+        + escrever(): void\\
+        + liparArquivo(): void\\
+        + enviarParaEscrita(): void
+      }
+
       
       \umlclass[x=-10,y=-5]{Routes}{
         }{
@@ -223,41 +151,159 @@
           Excluir(id: String): boll\\
           }
 
-      \umlclass[x=-10, y=-10]{Index}{}{}
+      \umlclass[x=-10, y=-10]{Index}{
+        - nome: String\\
+        - descricao: String\\
+        - id: String\\
+        - IdEccluir: String\\
+        - IdAterar: Strig\\
+        - nomeAlterar: String\\
+        - descricaoAlterar: String\\
+      }{
+        + EventEnviar()\\
+        + EventAterar()\\
+        + EventExcluir()\\
+        + EventListar()\\
+      }
+      \umlclass[x=0, y=0]{Arquivo}{
+        - escrita: FileWriter\\
+        - parser: JSONParser\\
+        - scan: Scanner\\
+        - gson: Gson\\
+      }{
+        + readFile(): String\\
+        + puxarDados(): void\\
+        + escrever(): void\\
+        + liparArquivo(): void\\
+        + enviarParaEscrita(): void
+      }
+          
+        \end{umlpackage}
+\end{tikzpicture}\\[0.5cm]
+
+
+
+\section{Diagrama de Sequência}
+    
+    \section{Diagrama de Classes Lista de Coleções}
+    \begin{tikzpicture} 
+      %\begin{umlpackage}{p}
+        
+        \begin{umlpackage}{Lista de Colecao}
+  
+          \umlclass[x=-10, y=0]{Registro}{ 
+          - colecao : Colecao[] \\
+        }{
+          + incluirColecao(Colecao: colecao): bool\\
+          + EnviarListaColecao(): String\\
+          + Excluir(String: id): bool\\
+          + Alterar(id: String, nome: String, descricao: String):bool\\
+        }
+        
+      \umlclass[x=0, y=-7]{Colecao}{
+        - nome : String \\
+        - descricao : String \\
+        - id : String \\}{
+        + Colecao(nome: String, descricoa: String)\\
+        + getNome(): String\\
+        + setNome(nome: String): void\\
+        + getDescricao(): String\\
+        + setDecriscao(descricao: String): void\\
+        + getId(): String\\
+        + setId(id: String): void\\
+        + toString(): String\\}
+
+        \umlclass[x=0, y=0]{Arquivo}{
+          - escrita: FileWriter\\
+          - parser: JSONParser\\
+          - scan: Scanner\\
+          - gson: Gson\\
+        }{
+          + readFile(): String\\
+          + puxarDados(): void\\
+          + escrever(): void\\
+          + liparArquivo(): void\\
+          + enviarParaEscrita(): void
+        }
+      
+      \umlclass[x=-10,y=-5]{Routes}{
+        }{
+          Salvar(): bool\\
+          Listar(): String\\
+          Alterar(id: String, nome: String, descricao: String): boll\\
+          Excluir(id: String): boll\\
+          }
+
+      \umlclass[x=-10, y=-10]{Index}{
+        - nome: String\\
+        - descricao: String\\
+        - id: String\\
+        - IdEccluir: String\\
+        - IdAterar: Strig\\
+        - nomeAlterar: String\\
+        - descricaoAlterar: String\\
+      }{
+        + EventEnviar()\\
+        + EventAterar()\\
+        + EventExcluir()\\
+        + EventListar()\\
+      }
+
             
           \end{umlpackage} 
           \umlcompo{Registro}{Colecao}
           \umlassoc{Registro}{Colecao}
-  \end{tikzpicture}\\[0.5cm]
-  O diagrama de classes é considerado por muitos autores como o mais importante e
-  o mais utilizado diagrama da UML. Seu principal enfoque está em permitir a visualização
-  das classes que irão compor o sistema com seus respectivos atributos e métodos,
-  bem como em demonstrar como as classes do sistema se relacionam, se complementam e
-  transmitem informações entre si. Este diagrama apresenta uma visão estática de como
-  as classes estão organizadas, preocupando-se em definir a estrutura lógica das mesmas.
+          \umlassoc{Routes}{Index}
+          \umlassoc{Routes}{Registro}
+          \umluniassoc{Arquivo}{Registro}
+
+          \end{tikzpicture}\\[0.5cm]
+
+
+
+  \section{Diagrama de classe MVC}
+  \begin{tikzpicture} 
+    \begin{umlpackage}{MVC}
+      
+      \begin{umlpackage}{view} 
+
+        \umlclass[x=0, y=-5]{view}{ 
+          }{
+            
+            }
+            
+          \end{umlpackage}
+
+    \begin{umlpackage}{model} 
+      \umlclass[x=10, y=-5]{Model}{ 
+       
+      }{
+      }
+    \end{umlpackage}
+    \begin{umlpackage}{controller} 
+
+      \umlclass[x=5, y=0]{Controller}{ 
+      
+      }{
+
+      }
+          
+        \end{umlpackage} 
+
+        
+      \end{umlpackage}
+      \umlimport{controller}{model}
+      \umlimport{view}{controller} 
+        \end{tikzpicture}\\[0.5cm]
 
   \section{Conclusão}
-  A maior dificuldade estava em fazer um Diagrama e só na implementação do próximo
-  perceber que faltava uma funcionalidade ou classe no sistema. Isso poderia desestruturar
-  o sistema mudando o pensamento lógico de algumas partes.\\
-  Além disso, tivemos dificuldade na implementação do  Diagrama de Sequência,
-  uma vez que não encontramos artigos relacionados que abrangia o tema.
-  Desse modo, percebemos a complexidade de abstrair um problema real,
-  e implementação de tal projeto.
+
 
   \newpage
   \begin{thebibliography}{4}
-    \bibitem{DEVMEDIA}DEVMEDIA.\textbf{O Que é UML e Diagramas de Caso de Uso}: Introdução Prática à UML. 
-    Recuperado em 17 de outubro de 2020,
-    https://www.devmedia.com.br/o-que-e-uml-e-diagramas-de-caso-de-uso-introducao-pratica-a-uml/23408
-
-    \bibitem{DEVMEDIA}DEVMEDIA.\textbf{Artigo SQL Magazine 64 - Utilizando UML}. 
-    Recuperado em 17 de outubro de 2020,
-    https://www.devmedia.com.br/artigo-sql-magazine-64-utilizando-uml/12665
-  
-    \bibitem{DEVMEDIA}DEVMEDIA.\textbf{Diagrama de Classes UML}. 
-    Recuperado em 17 de outubro de 2020,
-    https://www.devmedia.com.br/diagrama-de-classes-uml/12251
+    %\bibitem{DEVMEDIA}DEVMEDIA.\textbf{O Que é UML e Diagramas de Caso de Uso}: Introdução Prática à UML. 
+    %Recuperado em 17 de outubro de 2020,
+    %https://www.devmedia.com.br/o-que-e-uml-e-diagramas-de-caso-de-uso-introducao-pratica-a-uml/23408
     \end{thebibliography}
      
   \end{document}
