@@ -12,21 +12,26 @@ import model.Registro;
  * @author tales
  */
 public class Routes {
-    public static boolean Savar(String nome, String preco){
-        Colecao col = new Colecao(nome, preco);
-       return Registro.incluirColecao(col);
+    public static boolean Savar(String nome, String descricao){
+        
+        Registro reg = new Registro();
+        Colecao col = new Colecao(nome, descricao);
+       return reg.incluirColecao(col);
 
     }
     
     public static String Listar() throws ParseException{
-        return Registro.EnviarListaColecao();
+        Registro reg = new Registro();
+        return reg.EnviarListaColecao();
     }
     
     public static boolean excluir(String id){
-        return Registro.excluir(id);
+        Registro reg = new Registro();
+        return reg.excluir(id);
     }
     
     public static boolean alterar(String id, String nome, String preco){
-        return Registro.alterar(id, nome, preco);
+        Registro reg = new Registro();
+        return reg.alterar(id, nome, preco);
     }
 }

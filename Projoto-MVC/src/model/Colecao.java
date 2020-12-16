@@ -38,9 +38,12 @@ public class Colecao {
         this.id = id;
     }
 
-    public Colecao(String nome, String Descricao) {
+    public Colecao(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
+    }
+
+    public Colecao() {
     }
 
     @Override

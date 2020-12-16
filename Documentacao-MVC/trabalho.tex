@@ -8,14 +8,11 @@
     \vfill
       \begin{center}
         {\large \textbf{UNIVERSIDADE FEDERAL DOS VALES DO JEQUITINHONHA E MUCURI}} \\[0.5cm]
-        {\large \textbf{SISTEMAS DE INFORMAÇÃO}} \\[2cm]
+        {\large \textbf{SISTEMAS DE INFORMAÇÃO}} \\[4cm]
     
-        {\large \textbf{Daniel Fernandes}}\\[0.4cm]
-        {\large \textbf{Gabriel Morais}}\\[0.4cm]
-        {\large \textbf{Tales Félix}}\\[0.4cm]
-        {\large \textbf{Ulisses Brandão}}\\[4cm]
+        {\large \textbf{Tales Félix}}\\[4cm]
     
-        {\Large Análise Orientada a Objetos e Uml}\\[4cm]
+        {\Large Padrão de Projeto - MVC }\\[4cm]
     
         \hspace{.45\textwidth} %posiciona a minipage
         \begin{minipage}{.5\textwidth}
@@ -83,142 +80,65 @@
       as quais eles as utilizam.
 
  \section{Fluxo de Eventos}
-    \subsection{Realizar Venda}
-    - O Caso de uso começa quando o Colaborador/Administrador acessa a opção “Realizar venda”;\\
-    - O Colaborador/Administrador deverá estar logado na aplicação;\\
-    - Caso o cliente não esteja cadastrado, o colaborador deverá acessar a opção
-    “Solicitar cadastro” para assim o Administrador realizar o cadastro;\\
-    - Com o Cliente cadastrado, o Colaborador/Administrador entrar com as
-    informações de compras nos campos que aparece no sistema;\\
-    - Colaborador/Administrador acessa a opção “Gerar Extrato” para gerar um
-    extrato da venda feita para o cliente;\\
-    - Sair do Sistema ou escolher outra opção;\\
+    \subsection{Cadastrar Objeto}
+      O usuário Deverá preencher os campos, "Nome" e "Descrição" e sobmeter clicando no botão Enviar.\\
+      Aparecerá uma mensagem de sucesso, caso contrário mostrarar um erro e o usuário terá que repetir a operação.\\
 
-    \subsection{Gerar Extrato de Vendas}
-    - O Caso de uso começa quando o Colaborador/Administrador acessa a opção “Gerar Extratos de vendas”;\\
-    - O Colaborador/Administrador deverá estar logado na aplicação;\\
-    - Com o Cliente cadastrado, o Colaborador/Administrador acessa a opção “Gerar Extrato”;\\
-    - Sair do Sistema ou escolher outra opção;\\
+    \subsection{Listar Objetos}
+    Após clicar em "Listar" aparecerar uma lista de elementos.\\
+    Caso não tenha nenum matrial cadrastado mostrarar a lista vazia.\\
     
-    \subsection{Cadastrar Colaborador}
-    - O caso de uso começa quando o Administrador precisa cadastrar um novo colaborador.\\
-    - Com o login efetuado o Administrador deverá acessar o “Cadastro Colaborador”;\\
-    - Através de um formulário o administrador deverá informar os seguintes dados:
-    nome, CPF, email e senha;\\
-    - Sair do sistema ou escolher outra opção;\\
+    \subsection{Alterar Objetos}
+    O usuário Deverá preencher os campos, "Nome", "Descrição" e "ID" e submeter\\
+    Se os ID do objeto que deseja alterar não estiver devidadamente preenchido mostrarar uma mensagem de erro.\\
+    Caso contrário aparecerá uma mensagem de sucesso\\
 
-    \subsection{Cadastrar Cliente}
-    - O caso de uso começa quando o Administrador precisa efetuar o cadastro de um novo cliente;\\
-    - Com o login efetuado o Administrador deverá acessar o “Cadastro de Cliente”;\\
-    - Através de um formulário o administrador deverá informar os seguintes dados:\\
-    nome, endereço, número do telefone, e-mail e CPF;\\
-    - Sair do sistema ou escolher outra opção;\\
-
-   \subsection{Gerenciar Cliente}
-    - O caso de uso começa quando o Administrador/Colaborador precisa efetuar uma
-    busca nos dados do cliente;\\
-    - Com o login efetuado o Administrador/Colaborador deverá acessar o “Gereciar
-    Cliente” e fazer a pesquisa entre os clientes cadastrados;\\
-    - Sair do sistema ou escolher outra opção;\\
-
-  \subsection{Cadastrar Materiais}
-    - O caso de uso começa quando o Administrador precisa cadastrar novos
-    produtos(materiais) no sistema;\\
-    - Com o login efetuado o Administrador deverá acessar “Cadastrar Materiais”
-    informando dados do material.  com preço, quantidade em estoque, especificação
-    do produto, margem de lucro, data de fabricação e fornecedor;\\
-    - Sair do sistema ou escolher outra opção.\\
-  
-   \subsection{Consultar Estoque}
-    - O caso de uso começa quando o Administrador/Colaborador precisa realizar uma
-    consulta de produtos(materiais) no sistema;\\
-    - Com o login efetuado o Administrador deverá acessar “Consultar Estoque”
-    informando dados para a pesquisa do produto;\\
-    - Sair do sistema ou escolher outra opção;\\
-    
-  \subsection{Consultar Vendas}
-  - Com o login efetuado o Administrador deverá acessar “Consultar Vendas” escolhendo
-  a opção “consultar todas as vendas”, e esperar uma mensagem mostrando o relatório das vendas;\\
-  - Sair do sistema ou escolher outra opção.\\
-  
-
-  \subsection{Consultar Vendas por Cliente}
-  - Com o login efetuado o Administrador deverá acessar “Consultar Vendas”
-  escolhendo a opção de consultar “Consultar por cliente”, e esperar uma mensagem 
-  mostrando o relatório das vendas;\\
-  - Sair do sistema ou escolher outra opção.\\
+    \subsection{Excluir Objeto}
+    O usuário Deverá preencher "ID" e submeter\\
+    Se os ID do objeto que deseja excluir não estiver devidadamente preenchido mostrarar uma mensagem de erro.\\
+    Caso contrário aparecerá uma mensagem de sucesso\\
   
   
   \section{Classes}
   \begin{tikzpicture} 
     %\begin{umlpackage}{p}
-     
-  \begin{umlpackage}{Loja de Materiais} 
-
-    \umlclass[]{Fornecedor}{ 
-      Nome : String \\ CNPJ : String\\
-      Endereco : Endereco
-    }{}
-
-    \umlclass[x=-5]{Endereco}{
-      Cidade: String\\
-      CEP: String\\
-      Bairro: String\\
-      Rua: String\\
-      Numero: String\\
-      Telefone: String
-    }{} 
-    \umlclass[x=-10]{Pessoa}{ 
-      Nome : String \\ idade : int\\
-      Telefone: String \\ email : String\\
-      CPF: String\\  Senha: String\\
-      Chave: String\\ Endereco : Endereco
-
-    }{}
       
-    \umlclass[x=-10,y=-5]{Adminiostrador}{ 
+      \begin{umlpackage}{Lista de Colecao} 
+
+        \umlclass[x=-10, y=0]{Registro}{ 
+        - colecao : Colecao[] \\
       }{
-        Logar():void\\
-        CadrastarCliente():void\\
-        CadrastarColaborador(Colaborador):void\\
-        ConsultarVendas():void\\
-        ConsultarVendasPorCliente():void\\
-        RealizarVenda():void
+        + incluirColecao(Colecao: colecao): bool\\
+        + EnviarListaColecao(): String\\
+        + Excluir(String: id): bool\\
+        + Alterar(id: String, nome: String, descricao: String):bool\\
       }
-
-    \umlclass[x=-2,y=-5]{Colaborador}{
-    }{
-      Logar():void
-      RealizarVenda():void
-    }
-
-    \umlclass[x=3, y=-5]{Cliente}{ 
-    }{}
-
-    \umlclass[x=-10,y=-10]{Venda}{
-      Datavenda: String\\
-      item: itemVenda\\
-      valorTotal: double
+      
+    \umlclass[x=0, y=-5]{Colecao}{
+      - nome : String \\
+      - descricao : String \\
+      - id : String \\}{
+      + Colecao(nome: String, descricoa: String)\\
+      + getNome(): String\\
+      + setNome(nome: String): void\\
+      + getDescricao(): String\\
+      + setDecriscao(descricao: String): void\\
+      + getId(): String\\
+      + setId(id: String): void\\
+      + toString(): String\\}
+    
+    \umlclass[x=-10,y=-5]{Routes}{
       }{
-        GerarExtrato():void
+        Salvar(): bool\\
+        Listar(): String\\
+        Alterar(id: String, nome: String, descricao: String): boll\\
+        Excluir(id: String): boll\\
         }
 
-    \umlclass[x=-5,y=-10]{itemVenda}{
-      Quantidade: int\\
-      produto: Produto
-      }{
-        GerarExtrato():void
-      } 
-
-    \umlclass[x=0,y=-10]{Produto}{ 
-      nome : String \\ preço : float\\
-      quantidade : int \\ Especificação : String\\
-      fornecedor: String \\  data fab : String\\
-      atribute : int
-
-    }{}
-  \end{umlpackage} 
-\end{tikzpicture}\\
+    \umlclass[x=-10, y=-10]{Index}{}{}
+          
+        \end{umlpackage}
+\end{tikzpicture}\\[0.5cm]
 
 
 
