@@ -32,8 +32,7 @@ public class Registro {
         return true;
     }
         public static boolean incluirParaListar(Colecao colecao){
-        
-        System.out.println(colecao.toString());
+
         Registro.colecao.add(colecao);
         return true;
     }
@@ -50,31 +49,40 @@ public class Registro {
            return value;
        }
     public boolean excluir(String id){
+        if(id.equals("")){
+            return false;
+        }
        Registro.colecao.clear();
         Arquivo.puxarDados();
+       Arquivo.liparArquivo();
                for(int i =0;i<Registro.colecao.size(); i++){
               if(id.equals(Registro.colecao.get(i).getId()) ){
                    Registro.colecao.remove(i);
-                   Arquivo.enviarParaEscrita();
-                   Registro.colecao.clear();
+                Arquivo.enviarParaEscrita();
+                Registro.colecao.clear();
               return true;
            }
     }
+        Arquivo.enviarParaEscrita();
+
                return false;
     }
     public boolean alterar(String id, String nome, String preco){
-               Registro.colecao.clear();
+       Registro.colecao.clear();
         Arquivo.puxarDados();
+       Arquivo.liparArquivo();;
         for(int i =0;i<Registro.colecao.size(); i++){
             
             if(id.equals(Registro.colecao.get(i).getId()) ){
                    Registro.colecao.get(i).setNome(nome);
                    Registro.colecao.get(i).setDescricao(preco);
-                                      Arquivo.enviarParaEscrita();
+                   Arquivo.enviarParaEscrita();
                    Registro.colecao.clear();
                    return true;
               }
         }
+        Arquivo.enviarParaEscrita();
+
         return false;
     }
     

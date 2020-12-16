@@ -48,7 +48,7 @@ public class Colecao {
 
     @Override
     public String toString() {
-        return "Colecao,\n" + "nome=" + nome + ",\nDescriçao=" + descricao + ",\nid=" + id + '}';
+        return "Colecao,\n" + "nome=" + nome + ",\nDescriçao=" + descricao + ",\nid=" + id;
     }
 
 

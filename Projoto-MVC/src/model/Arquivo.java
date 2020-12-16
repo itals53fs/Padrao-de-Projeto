@@ -53,22 +53,8 @@ private static Gson gson = new Gson();
         return conteudo;
     }
     
-    public static boolean writeFile(String texto){
-        try {
-            FileWriter arq = new FileWriter("produto.txt");
-            PrintWriter escrever = new PrintWriter(arq);
-            escrever.print(texto);
-            escrever.close();
-            return true;
-        } catch (IOException ex) {
-            Logger.getLogger(Arquivo.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-    
 public static void puxarDados() {
       String linha;
-      Registro reg = new Registro();
       Colecao col = new Colecao();
 
             try {
@@ -78,8 +64,7 @@ public static void puxarDados() {
             }
             while (scan.hasNextLine()) {
                 linha = scan.nextLine();
-                
-                System.out.println(linha);
+               
                 col = gson.fromJson(linha, Colecao.class);
                 Registro.incluirParaListar(col);
                 
@@ -98,7 +83,18 @@ public static void puxarDados() {
             }
      }
      
-     public static void enviarParaEscrita(boolean bool){
+     public static void liparArquivo(){
+            try {
+           Arquivo.escrita = new FileWriter("txt/data.json");
+           Arquivo.escrita.write("");
+
+            Arquivo.escrita.close();
+       } catch (IOException ex) {
+           Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+       }
+     }
+     
+     public static void enviarParaEscrita(){
         
          Registro reg = new Registro();
         JSONObject arqJson = new JSONObject();
@@ -107,9 +103,6 @@ public static void puxarDados() {
                arqJson.put("descricao", colecao.getDescricao());
                arqJson.put("id", colecao.getId());
             try {
-                if(bool){
-                    
-                }
                 Arquivo.escrever(arqJson);
                 
             } catch (IOException ex) {
