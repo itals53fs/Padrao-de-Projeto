@@ -28,28 +28,6 @@ private static JSONParser parser;
 private static Scanner scan = new Scanner(System.in);
 private static Gson gson = new Gson();
     
-    public static String readFile(){
-        String conteudo = "";
-        try {
-            FileReader arq = new FileReader("txt/data.json");
-            BufferedReader ler = new BufferedReader(arq);
-            String linha = "";
-            try {
-                linha = ler.readLine();
-                while(linha!=null){
-                    conteudo += linha+"\n";
-                    linha = ler.readLine();
-                }
-                arq.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Arquivo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Arquivo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return conteudo;
-    }
     
 public static void puxarDados() {
       String linha;

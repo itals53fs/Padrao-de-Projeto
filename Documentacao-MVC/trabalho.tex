@@ -9,10 +9,11 @@
       \begin{center}
         {\large \textbf{UNIVERSIDADE FEDERAL DOS VALES DO JEQUITINHONHA E MUCURI}} \\[0.5cm]
         {\large \textbf{SISTEMAS DE INFORMAÇÃO}} \\[4cm]
-    
+        
+        {\large \textbf{Gabreil Morais}}\\[1cm]
         {\large \textbf{Tales Félix}}\\[4cm]
     
-        {\Large Padrão de Projeto - MVC }\\[4cm]
+        {\Large Padrão de Projeto - Model View Controller  X Observer }\\[4cm]
     
         \hspace{.45\textwidth} %posiciona a minipage
         \begin{minipage}{.5\textwidth}
@@ -25,7 +26,8 @@
 
 
   \newpage
-    \section{Introdução}
+  
+    \section{Projeto em MVC - Introdução}
     Um colecionador precisa de um sistema para guardar informações de seus objetos.
     O sistema deverá fazer registro do nome e descrição geral de cada pertence.
     Ao ser solicitado pelo usuário o sistema deverá retonar uma lista contendo
@@ -33,7 +35,7 @@
     
     
     
-    \section{Diagrama de Casos de Uso}
+    \subsection{Diagrama de Casos de Uso}
 
     \begin{tikzpicture}
 
@@ -71,128 +73,35 @@
       
   \end{tikzpicture}\\
 
-      O diagrama de casos de uso corresponde a uma visão externa do sistema
-      e representa graficamente os atores, os casos de uso, e os relacionamentos
-      entre estes elementos. Ele tem como objetivo ilustrar em um nível alto de
-      abstração quais elementos externos interagem com que funcionalidades do sistema,
-      ou seja, a finalidade de um diagrama de caso de uso é apresentar um tipo de diagrama
-      de contexto que apresenta os elementos externos de um sistema e as maneiras segundo
-      as quais eles as utilizam.
 
- \section{Fluxo de Eventos}
-    \subsection{Cadastrar Objeto}
+ \subsection{Fluxo de Eventos}
+    \subsubsection{Cadastrar Objeto}
       O usuário Deverá preencher os campos, "Nome" e "Descrição" e sobmeter clicando no botão Enviar.\\
       Aparecerá uma mensagem de sucesso, caso contrário mostrarar um erro e o usuário terá que repetir a operação.\\
 
-    \subsection{Listar Objetos}
+      \subsubsection{Listar Objetos}
     Após clicar em "Listar" aparecerar uma lista de elementos.\\
     Caso não tenha nenum matrial cadrastado mostrarar a lista vazia.\\
     
-    \subsection{Alterar Objetos}
+    \subsubsection{Alterar Objetos}
     O usuário Deverá preencher os campos, "Nome", "Descrição" e "ID" e submeter\\
     Se os ID do objeto que deseja alterar não estiver devidadamente preenchido mostrarar uma mensagem de erro.\\
     Caso contrário aparecerá uma mensagem de sucesso\\
 
-    \subsection{Excluir Objeto}
+    \subsubsection{Excluir Objeto}
     O usuário Deverá preencher "ID" e submeter\\
     Se os ID do objeto que deseja excluir não estiver devidadamente preenchido mostrarar uma mensagem de erro.\\
     Caso contrário aparecerá uma mensagem de sucesso\\
   
   
-  \section{Classes}
+  \subsection{Classes}
   \begin{tikzpicture} 
     %\begin{umlpackage}{p}
       
       \begin{umlpackage}{Lista de Colecao} 
 
-
         \umlclass[x=-10, y=0]{Registro}{ 
-          - colecao : Colecao[] \\
-        }{
-          + incluirColecao(Colecao: colecao): bool\\
-          + EnviarListaColecao(): String\\
-          + Excluir(String: id): bool\\
-          + Alterar(id: String, nome: String, descricao: String):bool\\
-        }
-
-        
-      \umlclass[x=0, y=-10]{Colecao}{
-        - nome : String \\
-        - descricao : String \\
-        - id : String \\}{
-        + Colecao(nome: String, descricoa: String)\\
-        + getNome(): String\\
-        + setNome(nome: String): void\\
-        + getDescricao(): String\\
-        + setDecriscao(descricao: String): void\\
-        + getId(): String\\
-        + setId(id: String): void\\
-        + toString(): String\\}
-
-        \umlclass[x=0, y=0]{Arquivo}{
-        - escrita: FileWriter\\
-        - parser: JSONParser\\
-        - scan: Scanner\\
-        - gson: Gson\\
-      }{
-        + readFile(): String\\
-        + puxarDados(): void\\
-        + escrever(): void\\
-        + liparArquivo(): void\\
-        + enviarParaEscrita(): void
-      }
-
-      
-      \umlclass[x=-10,y=-5]{Routes}{
-        }{
-          Salvar(): bool\\
-          Listar(): String\\
-          Alterar(id: String, nome: String, descricao: String): boll\\
-          Excluir(id: String): boll\\
-          }
-
-      \umlclass[x=-10, y=-10]{Index}{
-        - nome: String\\
-        - descricao: String\\
-        - id: String\\
-        - IdEccluir: String\\
-        - IdAterar: Strig\\
-        - nomeAlterar: String\\
-        - descricaoAlterar: String\\
-      }{
-        + EventEnviar()\\
-        + EventAterar()\\
-        + EventExcluir()\\
-        + EventListar()\\
-      }
-      \umlclass[x=0, y=0]{Arquivo}{
-        - escrita: FileWriter\\
-        - parser: JSONParser\\
-        - scan: Scanner\\
-        - gson: Gson\\
-      }{
-        + readFile(): String\\
-        + puxarDados(): void\\
-        + escrever(): void\\
-        + liparArquivo(): void\\
-        + enviarParaEscrita(): void
-      }
-          
-        \end{umlpackage}
-\end{tikzpicture}\\[0.5cm]
-
-
-
-\section{Diagrama de Sequência}
-    
-    \section{Diagrama de Classes Lista de Coleções}
-    \begin{tikzpicture} 
-      %\begin{umlpackage}{p}
-        
-        \begin{umlpackage}{Lista de Colecao}
-  
-          \umlclass[x=-10, y=0]{Registro}{ 
-          - colecao : Colecao[] \\
+          \umlstatic{- colecao : Colecao[]}\\
         }{
           + incluirColecao(Colecao: colecao): bool\\
           + EnviarListaColecao(): String\\
@@ -214,16 +123,15 @@
         + toString(): String\\}
 
         \umlclass[x=0, y=0]{Arquivo}{
-          - escrita: FileWriter\\
-          - parser: JSONParser\\
-          - scan: Scanner\\
-          - gson: Gson\\
+          \umlstatic{- escrita: FileWriter}\\
+          \umlstatic{- parser: JSONParser}\\
+          \umlstatic{- scan: Scanner}\\
+          \umlstatic{- gson: Gson}\\
         }{
-          + readFile(): String\\
-          + puxarDados(): void\\
-          + escrever(): void\\
-          + liparArquivo(): void\\
-          + enviarParaEscrita(): void
+          \umlstatic{+ puxarDados(): void}\\
+          \umlstatic{+ escrever(): void}\\
+          \umlstatic{+ liparArquivo(): void}\\
+          \umlstatic{+ enviarParaEscrita(): void}
         }
       
       \umlclass[x=-10,y=-5]{Routes}{
@@ -248,20 +156,94 @@
         + EventExcluir()\\
         + EventListar()\\
       }
+          
+        \end{umlpackage}
+\end{tikzpicture}\\[0.5cm]
 
-            
+    
+    \subsection{Diagrama de Classes Lista de Coleções}
+    \begin{tikzpicture} 
+      \begin{umlpackage}{MVC}
+        
+        \begin{umlpackage}[x=-10, y=-2]{view} 
+  
+            \umlclass[x=0, y=0, scale=0.5]{Index}{
+          - nome: String\\
+          - descricao: String\\
+          - id: String\\
+          - IdEccluir: String\\
+          - IdAterar: Strig\\
+          - nomeAlterar: String\\
+          - descricaoAlterar: String\\
+        }{
+          + EventEnviar()\\
+          + EventAterar()\\
+          + EventExcluir()\\
+          + EventListar()\\
+        }
+              
+            \end{umlpackage}
+  
+      \begin{umlpackage}{model} 
+        \umlclass[x=0, y=0, scale=0.5]{Registro}{ 
+          \umlstatic{- colecao : Colecao[]}\\
+        }{
+          + incluirColecao(Colecao: colecao): bool\\
+          + EnviarListaColecao(): String\\
+          + Excluir(String: id): bool\\
+          + Alterar(id: String, nome: String, descricao: String):bool\\
+        }
+        \umlclass[x=0, y=-3, scale=0.5]{Colecao}{
+          - nome : String \\
+          - descricao : String \\
+          - id : String \\}{
+          + Colecao(nome: String, descricoa: String)\\
+          + getNome(): String\\
+          + setNome(nome: String): void\\
+          + getDescricao(): String\\
+          + setDecriscao(descricao: String): void\\
+          + getId(): String\\
+          + setId(id: String): void\\
+          + toString(): String\\}
+  
+          \umlclass[x=-4, y=-2, scale=0.5]{Arquivo}{
+            \umlstatic{- escrita: FileWriter}\\
+            \umlstatic{- parser: JSONParser}\\
+            \umlstatic{- scan: Scanner}\\
+            \umlstatic{- gson: Gson}\\
+          }{
+            \umlstatic{+ puxarDados(): void}\\
+            \umlstatic{+ escrever(): void}\\
+            \umlstatic{+ liparArquivo(): void}\\
+            \umlstatic{+ enviarParaEscrita(): void}
+          }
+      \end{umlpackage}
+      \begin{umlpackage}[x=-10,y=-7]{controller} 
+  
+        \umlclass[x=0,y=0, scale=0.5]{Routes}{
+          }{
+            Salvar(): bool\\
+            Listar(): String\\
+            Alterar(id: String, nome: String, descricao: String): boll\\
+            Excluir(id: String): boll\\
+            }  
           \end{umlpackage} 
-          \umlcompo{Registro}{Colecao}
-          \umlassoc{Registro}{Colecao}
-          \umlassoc{Routes}{Index}
-          \umlassoc{Routes}{Registro}
-          \umluniassoc{Arquivo}{Registro}
+  
+          
+        \end{umlpackage}
+        \umlcompo{Registro}{Colecao}
+        \umlassoc{Registro}{Colecao}
+  
+        \umlimport{controller}{model}
 
+        \umlimport{view}{controller}
+ 
+        \umluniassoc{Arquivo}{Registro} 
           \end{tikzpicture}\\[0.5cm]
 
 
 
-  \section{Diagrama de classe MVC}
+  \subsection{Diagrama de classe MVC}
   \begin{tikzpicture} 
     \begin{umlpackage}{MVC}
       
@@ -293,11 +275,220 @@
         
       \end{umlpackage}
       \umlimport{controller}{model}
-      \umlimport{view}{controller} 
+      \umlimport{view}{controller}
         \end{tikzpicture}\\[0.5cm]
 
-  \section{Conclusão}
+        \subsection{Diagrama de classe MVC}
+  \begin{tikzpicture} 
+    \begin{umlpackage}{MVC}
+      
+      \begin{umlpackage}[x=-10, y=-2]{view} 
 
+          \umlclass[x=0, y=0, scale=0.5]{Index}{
+        - nome: String\\
+        - descricao: String\\
+        - id: String\\
+        - IdEccluir: String\\
+        - IdAterar: Strig\\
+        - nomeAlterar: String\\
+        - descricaoAlterar: String\\
+      }{
+        + EventEnviar()\\
+        + EventAterar()\\
+        + EventExcluir()\\
+        + EventListar()\\
+      }
+            
+          \end{umlpackage}
+
+    \begin{umlpackage}{model} 
+      \umlclass[x=0, y=0, scale=0.5]{Registro}{ 
+        \umlstatic{- colecao : Colecao[]}\\
+      }{
+        + incluirColecao(Colecao: colecao): bool\\
+        + EnviarListaColecao(): String\\
+        + Excluir(String: id): bool\\
+        + Alterar(id: String, nome: String, descricao: String):bool\\
+      }
+      \umlclass[x=0, y=-3, scale=0.5]{Colecao}{
+        - nome : String \\
+        - descricao : String \\
+        - id : String \\}{
+        + Colecao(nome: String, descricoa: String)\\
+        + getNome(): String\\
+        + setNome(nome: String): void\\
+        + getDescricao(): String\\
+        + setDecriscao(descricao: String): void\\
+        + getId(): String\\
+        + setId(id: String): void\\
+        + toString(): String\\}
+
+        \umlclass[x=-4, y=-2, scale=0.5]{Arquivo}{
+          \umlstatic{- escrita: FileWriter}\\
+          \umlstatic{- parser: JSONParser}\\
+          \umlstatic{- scan: Scanner}\\
+          \umlstatic{- gson: Gson}\\
+        }{
+          \umlstatic{+ puxarDados(): void}\\
+          \umlstatic{+ escrever(): void}\\
+          \umlstatic{+ liparArquivo(): void}\\
+          \umlstatic{+ enviarParaEscrita(): void}
+        }
+    \end{umlpackage}
+    \begin{umlpackage}[x=-3,y=-7]{controller} 
+
+      \umlclass[x=0,y=0, scale=0.5]{Routes}{
+        }{
+          Salvar(): bool\\
+          Listar(): String\\
+          Alterar(id: String, nome: String, descricao: String): boll\\
+          Excluir(id: String): boll\\
+          }  
+        \end{umlpackage} 
+
+        
+      \end{umlpackage}
+      \umlcompo{Registro}{Colecao}
+      \umlassoc{Registro}{Colecao}
+
+      \umlimport{controller}{model}
+      \umlimport{model}{controller}
+      \umlimport{view}{controller}
+      \umlimport{controller}{view}
+      \umluniassoc{Arquivo}{Registro} 
+    \end{tikzpicture}\\[0.5cm]
+    
+    \section{Observer}
+
+    \subsection{Objetivo}
+
+    Observer é um padrão de projeto comportamental que permite que um objeto notifique outros objetos sobre a mudança em seu estado. O padrão Observer fornece uma maneira de assinar e cancelar a assinatura desses eventos para qualquer objeto que implemente uma interface de assinante. Sendo assim o observar é um padrão de projeto que tem como princípio a ligação leve.
+	Sendo assim, o princípio da ligação leve procurar objetos levemente ligados um com o outro, para que eles saibam muito pouco de cada um, sendo assim interagindo normalmente.
+
+
+    \subsection{Diagrama Observer}
+
+    \begin{tikzpicture} 
+      \begin{umlpackage}{observer}
+        
+  
+          \umlclass[x=1, y=3]{Observer}{ 
+            }{
+            + notify()
+              }
+              
+  
+        \umlclass[x=7, y=3]{Subject}{ 
+         + observerCollection
+        }{
+          + registerObsertver(observer)\\
+          + unregisterObserver(observer)\\
+          + notifyObservers()
+        }
+
+
+  
+        \umlclass[x=0, y=0]{ConcreteObserverA}{ 
+        
+        }{
+          + notify()
+        }
+
+        \umlclass[x=5, y=0]{ConcreteObserverB}{ 
+        
+          }{
+            + notify()
+          }
+            
+          \end{umlpackage} 
+  
+          \umlinherit{ConcreteObserverB}{Observer}
+          \umlinherit{ConcreteObserverA}{Observer}
+          \umlaggreg{Subject}{Observer}
+
+
+          \end{tikzpicture}\\[0.5cm]
+
+          \subsection{Diagrama de classes}
+
+          Este projeto é uma implementação do padrão de projeto observer, em um 
+          cenário de um resgate do samu, e a chegada no hospital, sendo assim ele
+          designa depois de um leve diagnóstico a que local do hospital, o paciente s
+          erá encaminhado.\\
+          Devido a esse cenário temos 2 classes , a Atendente e o Samu. Na qual a 
+          atendente e uma classe observadora da classe samu, contendo nela três métodos
+          diaguinosticar1():void, diaguinosticar2():void, diaguinosticar3():void e 
+          update que é um método que foi declarado na interface observer. \\
+          Tendo também a classe Samu na qual tem os atributos acao String , 
+          diagnóstico String, e paciente String e sendo os métodos paciente():void , diagnostico():void e mudaEstado():void . Devido a esses métodos, o diagnóstico passa no método, faz uma comparação passando para a variável ação que por sua vez se chama this.mudaEstado, sendo assim notificando seu observador, que por sua vez na sua função update compara a ação e chama um método do atendente .
+          Prós x contras.\\
+          Princípio  do aberto ou fechado pode-se introduzir novas classes 
+          assinantes a qualquer momento. Devido que um objeto observado pode 
+          receber novos observadores a qualquer momento. Sendo assim, gerando 
+          conexões com objetos a qualquer momento. \\
+          O ponto negativo, assinantes são notificados de forma. 
+          Se é emitido um sinal que muda o estado do objeto observado, então 
+          todos os observadores vão reagir a essa mudança de estado.
+
+
+        \subsection{Diagrama de Classes Observer}
+        \begin{tikzpicture} 
+          \begin{umlpackage}{observer}
+            
+      
+              \umlclass[x=0, y=0]{Teste}{ 
+                }{
+
+                  }
+                  
+      
+            \umlclass[x=4, y=2]{Atendente}{ 
+            
+            }{
+              + Diagnostico(): void\\
+              + Diagnostico1(): void\\
+              + Diagnostico2(): void
+            }
+    
+    
+      
+            \umlclass[x=10, y=5]{Observable}{
+              
+            
+            }{
+              + setChange(): void\\
+              + nofyObserver(): void
+            }
+    
+            \umlclass[x=10, y=0]{Samu}{ 
+                - acao: String\\
+                - paciente: String
+                diagnostico: String\\
+              }{
+                - Paciente(): void\\
+                - Diagnostico(): void\\
+                + mudarEstacao(): void
+              }
+
+              \umlclass[x=4, y=5]{Observer}{ 
+
+              }{
+                + Update(args0: int, agr1: int): void
+              }
+                
+              \end{umlpackage} 
+      
+              \umlinherit{Teste}{Atendente}
+              \umlinherit{Teste}{Samu}
+              \umlinherit{Samu}{Observable}
+              \umlimpl{Atendente}{Observer}
+    
+              
+              \end{tikzpicture}\\[0.5cm]
+
+
+  \section{Conclusão}
+      O Padrão de Projeto Model View Controller é um padrão de arquitetura de Software
 
   \newpage
   \begin{thebibliography}{4}
