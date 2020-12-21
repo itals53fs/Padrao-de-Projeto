@@ -23,7 +23,6 @@ public class Registro {
     public static boolean incluirColecao(Colecao colecao){
         
         colecao.setId(Registro.colecao.size() +colecao.getNome());
-        System.out.println(colecao.toString());
         Registro.colecao.add(colecao);
         Arquivo.enviarParaEscrita();
         return true;
