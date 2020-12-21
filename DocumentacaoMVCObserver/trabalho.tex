@@ -27,7 +27,14 @@
 
   \newpage
   
-    \section{Projeto em MVC - Introdução}
+    \section{Model View Controller - Introdução}
+    O MVC é um padrão de projeto voltado para arquitetura de software, comumente usado na
+    web. Seu principal objetivo é a separação de funcionalidades em três camadas, model, view e controller.\\
+    O model é responsalvel pela regra de negócio, gerenciamento de dados etc. já o view fica responsavel
+    pela parte de visualização do usuário, como gráficos e tabelas de diferentes formas. Para fezer a comunicação
+    entre essas duas camadas usa se o controller, que fica responsavel pela comunicação, respostas e requisições
+    entre o model e view.
+    \subsection{Problematização de um projeto em MVC}
     Um colecionador precisa de um sistema para guardar informações de seus objetos.
     O sistema deverá fazer registro do nome e descrição geral de cada pertence.
     Ao ser solicitado pelo usuário o sistema deverá retonar uma lista contendo
@@ -94,7 +101,7 @@
     Caso contrário aparecerá uma mensagem de sucesso\\
   
   
-  \subsection{Classes}
+  \subsection{Classes Lista de Coleção}
   \begin{tikzpicture} 
     %\begin{umlpackage}{p}
       
@@ -278,86 +285,6 @@
       \umlimport{view}{controller}
         \end{tikzpicture}\\[0.5cm]
 
-        \subsection{Diagrama de classe MVC}
-  \begin{tikzpicture} 
-    \begin{umlpackage}{MVC}
-      
-      \begin{umlpackage}[x=-10, y=-2]{view} 
-
-          \umlclass[x=0, y=0, scale=0.5]{Index}{
-        - nome: String\\
-        - descricao: String\\
-        - id: String\\
-        - IdEccluir: String\\
-        - IdAterar: Strig\\
-        - nomeAlterar: String\\
-        - descricaoAlterar: String\\
-      }{
-        + EventEnviar()\\
-        + EventAterar()\\
-        + EventExcluir()\\
-        + EventListar()\\
-      }
-            
-          \end{umlpackage}
-
-    \begin{umlpackage}{model} 
-      \umlclass[x=0, y=0, scale=0.5]{Registro}{ 
-        \umlstatic{- colecao : Colecao[]}\\
-      }{
-        + incluirColecao(Colecao: colecao): bool\\
-        + EnviarListaColecao(): String\\
-        + Excluir(String: id): bool\\
-        + Alterar(id: String, nome: String, descricao: String):bool\\
-      }
-      \umlclass[x=0, y=-3, scale=0.5]{Colecao}{
-        - nome : String \\
-        - descricao : String \\
-        - id : String \\}{
-        + Colecao(nome: String, descricoa: String)\\
-        + getNome(): String\\
-        + setNome(nome: String): void\\
-        + getDescricao(): String\\
-        + setDecriscao(descricao: String): void\\
-        + getId(): String\\
-        + setId(id: String): void\\
-        + toString(): String\\}
-
-        \umlclass[x=-4, y=-2, scale=0.5]{Arquivo}{
-          \umlstatic{- escrita: FileWriter}\\
-          \umlstatic{- parser: JSONParser}\\
-          \umlstatic{- scan: Scanner}\\
-          \umlstatic{- gson: Gson}\\
-        }{
-          \umlstatic{+ puxarDados(): void}\\
-          \umlstatic{+ escrever(): void}\\
-          \umlstatic{+ liparArquivo(): void}\\
-          \umlstatic{+ enviarParaEscrita(): void}
-        }
-    \end{umlpackage}
-    \begin{umlpackage}[x=-3,y=-7]{controller} 
-
-      \umlclass[x=0,y=0, scale=0.5]{Routes}{
-        }{
-          Salvar(): bool\\
-          Listar(): String\\
-          Alterar(id: String, nome: String, descricao: String): boll\\
-          Excluir(id: String): boll\\
-          }  
-        \end{umlpackage} 
-
-        
-      \end{umlpackage}
-      \umlcompo{Registro}{Colecao}
-      \umlassoc{Registro}{Colecao}
-
-      \umlimport{controller}{model}
-      \umlimport{model}{controller}
-      \umlimport{view}{controller}
-      \umlimport{controller}{view}
-      \umluniassoc{Arquivo}{Registro} 
-    \end{tikzpicture}\\[0.5cm]
-    
     \section{Observer}
 
     \subsection{Objetivo}
@@ -367,6 +294,8 @@
 
 
     \subsection{Diagrama Observer}
+
+    O diagrama do observer ele tem duas classes, uma subject e uma observer, sendo a subject como a observado, na qual a observer recebe as notificações , sendo assim notificando os outros objetos que o objeto observado mudou de estado\\\\
 
     \begin{tikzpicture} 
       \begin{umlpackage}{observer}
@@ -486,15 +415,46 @@
               
               \end{tikzpicture}\\[0.5cm]
 
+  \section{Comparação entre MVC e Observer}
+
+  Observer é um padrão comportamental , no qual tem a maior função notificar outros 
+  objetos no qual eles ficam de observadores, para que possam mudar de estado. 
+  No entanto, o MVC é um projeto de arquitetura de software que tem o intuito de 
+  dividir responsabilidade do projeto em três camadas, sendo elas model, view, controller. 
+  No entanto um módulo do mvc pode usar o padrão observer, sendo ele o model, que 
+  por sua vez pode fazer o uso do padrão Observer que separa a visão do estado de 
+  um objeto do próprio objeto, na qual permite que o objeto forneça visões alternativas 
+  mantendo os objetos interessados constantemente, informados sobre suas mudanças de estado.
 
   \section{Conclusão}
-      O Padrão de Projeto Model View Controller é um padrão de arquitetura de Software
+     
+
+  Tendo em vista que o uso de padrões de projeto é essencial para o desenvolvimento 
+  de alguma aplicação que pode vir a ser desenvolvida, ela entra também no uso de 
+  boas práticas, no qual permite ao desenvolvedor ter um código bem organizado e 
+  com grande chance de realização e manutenção. \\
+  Essas técnicas têm grande importância no mundo da programação, na qual tem a 
+  necessidade de bom entendimento e de bom uso , para que se possa ter códigos 
+  bem estruturados e de fácil entendimento.
+
 
   \newpage
   \begin{thebibliography}{4}
-    %\bibitem{DEVMEDIA}DEVMEDIA.\textbf{O Que é UML e Diagramas de Caso de Uso}: Introdução Prática à UML. 
-    %Recuperado em 17 de outubro de 2020,
-    %https://www.devmedia.com.br/o-que-e-uml-e-diagramas-de-caso-de-uso-introducao-pratica-a-uml/23408
+    \bibitem{DEVMEDIA}DEVMEDIA.\textbf{Padrão de Projeto Observer em Java.}
+    Recuperado em 18 de dezembro de 2020,
+   https://www.devmedia.com.br/padrao-de-projeto-observer-em-java/26163
+
+   \bibitem{DEVMEDIA}DEVMEDIA.\textbf{O Padrão de Projeto Observer.} 
+   Recuperado em 18 de dezembro de 2020,
+   https://www.devmedia.com.br/o-padrao-de-projeto-observer/22861
+   \bibitem{Linha Codigo}DEVMEDIA.\textbf{Abordando a arquitetura MVC, e Design Patterns: Observer, Composite, Strategy.
+   }
+   Recuperado em 19 de dezembro de 2020,
+   https://www.devmedia.com.br/o-padrao-de-projeto-observer/22861
+   
+   
+   
     \end{thebibliography}
+
      
   \end{document}
